@@ -1,6 +1,5 @@
-![NetworkDesign](https://github.com/user-attachments/assets/92d21e6f-66c4-4c1f-b828-f2ea07f3ee82)
-
 # Virtual Home Network Setup Using VMware Workstation and Fedora 41
+![NetworkDesign](https://github.com/user-attachments/assets/92d21e6f-66c4-4c1f-b828-f2ea07f3ee82)
 
 This project demonstrates how to set up a virtual home network using VMware Workstation with Fedora 41 as the operating system. The network simulates a router, DHCP server, multiple clients, and subnets. Wireshark is used for network traffic monitoring.
 
