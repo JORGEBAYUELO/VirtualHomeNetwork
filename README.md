@@ -180,7 +180,11 @@ This setup simulates a home network within a virtual environment. A Fedora Serve
    sudo dnf update -y
    sudo dnf install wireshark -y
    ```
-2. Launch Wireshark from the terminal or from the GUI
+   ![Screenshot From 2025-01-21 17-15-03](https://github.com/user-attachments/assets/45554bad-7121-4d80-8e84-4dbd623d637f)
+   ![Screenshot From 2025-01-21 17-15-27](https://github.com/user-attachments/assets/af564ca6-3cab-4548-9218-239aa4b20fab)
+   Update packages and install wireshark from terminal.
+
+3. Launch Wireshark from the terminal or from the GUI
    ```bash
    wireshark &
    ```
