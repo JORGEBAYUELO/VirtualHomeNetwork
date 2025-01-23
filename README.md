@@ -173,6 +173,15 @@ This setup simulates a home network within a virtual environment. A Fedora Serve
 ---
 
 ### **6. Use Wireshark to monitor traffic**
+1. Install Wireshark if you dont have it already. replace dnf with your distro package manager or Install it directly from their official website.
+   ```bash
+   sudo dnf update -y
+   sudo dnf install wireshark -y
+   ```
+2. Launch Wireshark from the terminal or from the GUI
+   ```bash
+   wireshark &
+   ```
 
 ---
 
