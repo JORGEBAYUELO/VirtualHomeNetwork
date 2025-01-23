@@ -172,8 +172,6 @@ This setup simulates a home network within a virtual environment. A Fedora Serve
 
 ---
 
----
-
 ### **6. Use Wireshark to monitor traffic**
 
 ---
