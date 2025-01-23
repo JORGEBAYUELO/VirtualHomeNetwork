@@ -164,7 +164,7 @@ This setup simulates a home network within a virtual environment. A Fedora Serve
      ```
 ---
 
-### **5. Adding a Second Subnet**
+## **Adding a Second Subnet**
 1. Create `VMnet3` with a subnet (e.g., `192.168.50.0/24`).
 2. Attach it to **RouterVM** and **ClientVM2**.
 3. Configure static IPs on RouterVM and ClientVM2 for the new interface.
@@ -172,7 +172,7 @@ This setup simulates a home network within a virtual environment. A Fedora Serve
 
 ---
 
-### **6. Use Wireshark to monitor traffic**
+## **Use Wireshark to monitor traffic**
 1. Install Wireshark if you dont have it already. replace dnf with your distro package manager or Install it directly from their official website.
    ```bash
    sudo dnf update -y
