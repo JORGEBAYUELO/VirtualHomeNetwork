@@ -246,13 +246,26 @@ This setup simulates a home network within a virtual environment. A Fedora Serve
 
 **For each Client VM, make sure to change the network from NAT to the custom network (vmnet2).**
 
+![Screenshot From 2025-01-21 14-26-46](https://github.com/user-attachments/assets/86343513-2fda-427c-9202-63fee996ea57)
+
+**Power on the Client VMs and start the installation process.**
+
 1. Create Fedora Workstation VMs:
+
    - **ClientVM1** (DHCP):
+     
+     ![Screenshot From 2025-01-21 15-28-23](https://github.com/user-attachments/assets/1e16e50a-8ad1-454d-b87f-e2a0045eade3)
+
+     **Set up the Client VM 1 to recieve DHCP. Make sure you replace the (ens160) with your interface name.**
      ```bash
      sudo nmcli connection modify ens160 ipv4.method auto connection.autoconnect yes
      sudo systemctl restart NetworkManager
      ```
    - **ClientVM2** (Static IP):
+  
+     ![Screenshot From 2025-01-21 15-44-50](https://github.com/user-attachments/assets/88bf824b-0506-49d1-a006-7315e9c8dc49)
+  
+     **Set up static IP for the second Client VM.**
      ```bash
      sudo nmcli connection add type ethernet ifname ens160 con-name static-ip ipv4.method manual ipv4.addresses 172.16.206.10/24 ipv4.gateway 172.16.206.1 ipv4.dns "8.8.8.8,8.8.4.4" connection.autoconnect yes
      sudo nmcli connection up static-ip
@@ -262,11 +275,20 @@ This setup simulates a home network within a virtual environment. A Fedora Serve
 
 ### **4. Testing the Setup**
 1. Verify IP configuration:
+
+   ![Screenshot From 2025-01-21 15-31-37](https://github.com/user-attachments/assets/976f4e3b-0f0e-4657-8bba-7d720cbd7d08)
+   
+   **Verify the IP configuration for both Client VMs.**
    ```bash
    ip addr show
    ```
-2. Test connectivity:
+3. Test connectivity:
    - Ping router from clients:
+     
+     ![Screenshot From 2025-01-21 15-30-36](https://github.com/user-attachments/assets/39453b5e-2445-46df-bea6-f8711f260bb4)
+     ![Screenshot From 2025-01-21 15-46-32](https://github.com/user-attachments/assets/69820769-37d9-43e6-a6bb-35fb4c4f270c)
+
+     **Test internet connectivity from both Client VMs, ping the router, also ping the Client VMs to test connectivity between each other.**
      ```bash
      ping -c 4 172.16.206.1
      ```
@@ -276,30 +298,63 @@ This setup simulates a home network within a virtual environment. A Fedora Serve
      ```
 ---
 
-## **Adding a Second Subnet**
-1. Create `VMnet3` with a subnet (e.g., `192.168.50.0/24`).
-2. Attach it to **RouterVM** and **ClientVM2**.
-3. Configure static IPs on RouterVM and ClientVM2 for the new interface.
-4. Test routing and connectivity.
+## **Adding a Third Subnet**
+1. Create `VMnet3` with a subnet (e.g., `192.168.5.0/24`).
+   
+   ![Screenshot From 2025-01-21 16-18-10](https://github.com/user-attachments/assets/0620a20e-9276-4924-a73a-dab35fcac959)
+
+3. Attach it to **RouterVM** and **ClientVM2**.
+4. Configure static IPs on RouterVM and ClientVM2 for the new interface.
+5. Test routing and connectivity.
 
 ---
 
 ## **Use Wireshark to monitor traffic**
-1. Install Wireshark if you dont have it already. replace dnf with your distro package manager or Install it directly from their official website.
-   ```bash
-   sudo dnf update -y
-   sudo dnf install wireshark -y
-   ```
+1. Install Wireshark. Replace dnf with your distro package manager or Install it directly from their official website.
+
    ![Screenshot From 2025-01-21 17-15-03](https://github.com/user-attachments/assets/45554bad-7121-4d80-8e84-4dbd623d637f)
    ![Screenshot From 2025-01-21 17-15-27](https://github.com/user-attachments/assets/af564ca6-3cab-4548-9218-239aa4b20fab)
 
    **Update packages and install wireshark from terminal.**
+   ```bash
+   sudo dnf update -y
+   sudo dnf install wireshark -y
+   ```
+2. Launch Wireshark from the terminal or from the GUI:
 
-3. Launch Wireshark from the terminal or from the GUI
+   ![Screenshot From 2025-01-21 20-05-28](https://github.com/user-attachments/assets/14e538b7-6dd4-41d6-8184-528536b3719d)
+
    ```bash
    wireshark &
    ```
+3. Select the Network Interface.
+4. Choose the interface you want to monitor (e.g.,ens160 for VMnet2 or ens193 for VMnet3).
+5. Click Start to begin capturing packets.
+6. Perform Network Activity
+7. From another VM or the Router VM, generate traffic:
+8. Ping the Client VM:
+   ```bash
+   ping -c 4 172.16.206.101
+   ```
+   Access a website from the Client VM:
+   ```bash
+   curl http://example.com
+   ```
+9. Use Wireshark’s filters to isolate specific types of traffic:
+   - **ICMP (Ping):**
 
+     ![Screenshot From 2025-01-21 20-15-25](https://github.com/user-attachments/assets/97a3eaff-a961-4814-8967-88cbb0705ff9)
+
+   - **DNS Queries:**
+
+     ![Screenshot From 2025-01-21 20-15-53](https://github.com/user-attachments/assets/f514dbc5-5b1f-4e89-8bae-d0020673e591)
+
+   - **HTTP Traffic:**
+
+     ![Screenshot From 2025-01-21 20-16-12](https://github.com/user-attachments/assets/40815811-f695-45a6-aedd-313e045b3cde)
+
+     **Here you are going to be able to observe packet details, including source and destination IPs, protocols used and packet size.**
+     
 ---
 
 ### **License**
