@@ -237,6 +237,15 @@ This setup simulates a home network within a virtual environment. A Fedora Serve
 ---
 
 ### **3. Creating and Configuring Client VMs**
+
+![Screenshot From 2025-01-21 12-26-01](https://github.com/user-attachments/assets/ce12c518-1922-499e-8d8c-dad1569ed8d9)
+
+**Follow the same installation wizard to create the Client VMs.**
+
+![Screenshot From 2025-01-21 14-24-20](https://github.com/user-attachments/assets/ddd03fb8-09f2-4d77-a3e3-782c773adf79)
+
+**For each Client VM, make sure to change the network from NAT to the custom network (vmnet2).**
+
 1. Create Fedora Workstation VMs:
    - **ClientVM1** (DHCP):
      ```bash
