@@ -227,12 +227,12 @@ This setup simulates a home network within a virtual environment. A Fedora Serve
 
     **configure NAT iptables and make sure you anble the iptables services and start it so it can automatically restart if the routerVM is restarted**
 
-   ```bash
-   sudo iptables -t nat -A POSTROUTING -o ens160 -j MASQUERADE
-   sudo iptables-save | sudo tee /etc/sysconfig/iptables
-   sudo systemctl enable iptables
-   sudo systemctl start iptables
-   ```
+    ```bash
+    sudo iptables -t nat -A POSTROUTING -o ens160 -j MASQUERADE
+    sudo iptables-save | sudo tee /etc/sysconfig/iptables
+    sudo systemctl enable iptables
+    sudo systemctl start iptables
+    ```
 
 ---
 
