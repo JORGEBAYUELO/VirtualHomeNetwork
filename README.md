@@ -16,7 +16,7 @@ This project demonstrates how to set up a virtual home network using VMware Work
    - [Creating and Configuring Client VMs](#creating-and-configuring-client-vms)
    - [Configuring DHCP and NAT](#configuring-dhcp-and-nat)
    - [Testing the Setup](#testing-the-setup)
-5. [Adding a Second Subnet](#adding-a-second-subnet)
+5. [Adding a Third Subnet](#adding-a-third-subnet)
 6. [Using Wireshark to Monitor Traffic](#use-wireshark-to-monitor-traffic)
 
 ---
