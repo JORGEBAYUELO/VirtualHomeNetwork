@@ -109,7 +109,7 @@ This setup simulates a home network within a virtual environment. A Fedora Serve
 
 ![Screenshot From 2025-01-21 12-26-59](https://github.com/user-attachments/assets/a0765594-6c3d-4ef8-b24f-af8219dbccf7)
 
-**Specify the disk capacity. For this case, I'm going with the minimum size recommended.**
+**Specify the disk capacity. In this case, I'm going with the minimum size recommended.**
 
 ![Screenshot From 2025-01-21 12-28-03](https://github.com/user-attachments/assets/01b24cfd-68b1-405b-ad6e-e4e5f80ce8a3)
 
@@ -134,7 +134,7 @@ This setup simulates a home network within a virtual environment. A Fedora Serve
 
 ![Screenshot From 2025-01-21 12-35-59](https://github.com/user-attachments/assets/562c84ac-d527-441c-ac0e-44f12700dc9e)
 
-**Add a new Network Adapter for the Router Vm.**
+**Add a new Network Adapter for the Router VM.**
 
 ![Screenshot From 2025-01-21 12-36-40](https://github.com/user-attachments/assets/f4a284fd-2553-49b0-9145-56a85640ba3a)
 
@@ -158,22 +158,37 @@ This setup simulates a home network within a virtual environment. A Fedora Serve
 
 ![Screenshot From 2025-01-21 12-46-40](https://github.com/user-attachments/assets/3785918b-3ea3-47d3-ae08-fc0aa3491edc)
 
-**Important to note that Fedora Server doesn't have a GUI, but you could choose to install one if you want to do so.**
+**Important to note that Fedora Server doesn't come with a GUI pre-installed, but you could choose to install one if you want to do so.**
 
 ![Screenshot From 2025-01-21 12-48-10](https://github.com/user-attachments/assets/5c1198a7-0273-4b8f-bd5f-6d0b66b99ba5)
 
-**We are going to proceed updating system and packages first in the Router VM.**
+**We are going to proceed updating the system and packages first in the Router VM.**
 
 4. Install necessary packages:
+
+   ![Screenshot From 2025-01-21 12-53-02](https://github.com/user-attachments/assets/1adb4e93-eb82-4fd5-b9ec-03128ca6ff16)
+
+   **Install dhcp server and iptables services.**
+
    ```bash
-   sudo dnf install -y dhcp-server iptables-services
+   sudo dnf install dhcp-server iptables-services -y
    ```
-5. Enable IP forwarding:
+5. Enable IP forwarding (`/etc/sysctl.conf`):
+
+   ![Screenshot From 2025-01-21 12-54-19](https://github.com/user-attachments/assets/58984bc8-9cb1-4ef6-992b-7c571ab5207d)
+
+   **Enable IP forwarding and load the configuration file.**
+
    ```bash
    echo "net.ipv4.ip_forward = 1" | sudo tee -a /etc/sysctl.conf
    sudo sysctl -p
    ```
 6. Configure DHCP (`/etc/dhcp/dhcpd.conf`):
+
+   ![Screenshot From 2025-01-21 13-03-21](https://github.com/user-attachments/assets/8c1b9fc7-c9c9-409a-862f-b052ba99435e)
+
+   **Configure the dhcpd.conf file with your subnet details.**
+
    ```plaintext
    subnet 172.16.206.0 netmask 255.255.255.0 {
        range 172.16.206.100 172.16.206.200;
@@ -184,6 +199,11 @@ This setup simulates a home network within a virtual environment. A Fedora Serve
    }
    ```
 7. Specify the interface for DHCP (`/etc/sysconfig/dhcpd`):
+
+   ![Screenshot From 2025-01-21 13-06-03](https://github.com/user-attachments/assets/943a50b5-da6b-4e6e-90d0-ac2ff310810e)
+
+   **Edit the dhcpd configuration file and specify the interface that is going to handle DHCP**
+
    ```plaintext
    DHCPDARGS=ens192
    ```
@@ -192,6 +212,9 @@ This setup simulates a home network within a virtual environment. A Fedora Serve
    nmcli connection modify ens192 ipv4.method manual ipv4.addresses 172.16.206.1/24 ipv4.gateway 172.16.206.1 ipv4.dns "8.8.8.8,8.8.4.4" connection.autoconnect yes
    ```   
 9. Start and enable DHCP:
+
+   ![Screenshot From 2025-01-21 14-23-14](https://github.com/user-attachments/assets/2ab61ad1-1470-4780-b365-50228b466cbb)
+
    ```bash
    sudo systemctl enable dhcpd
    sudo systemctl start dhcpd
@@ -199,6 +222,11 @@ This setup simulates a home network within a virtual environment. A Fedora Serve
    ```
 
 10. Configure NAT with iptables:
+
+    ![Screenshot From 2025-01-21 13-08-58](https://github.com/user-attachments/assets/d27904cd-bc70-4186-b242-4f25e9bce252)
+
+    **configure NAT iptables and make sure you anble the iptables services and start it so it can automatically restart if the routerVM is restarted**
+
    ```bash
    sudo iptables -t nat -A POSTROUTING -o ens160 -j MASQUERADE
    sudo iptables-save | sudo tee /etc/sysconfig/iptables
