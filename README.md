@@ -336,7 +336,7 @@ This setup simulates a home network within a virtual environment. A Fedora Serve
    ```bash
    ping -c 4 172.16.206.101
    ```
-   Access a website from the Client VM:
+- Access a website from the Client VM:
    ```bash
    curl http://example.com
    ```
