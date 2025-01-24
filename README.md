@@ -93,7 +93,7 @@ This setup simulates a home network within a virtual environment. A Fedora Serve
 
 ![Screenshot From 2025-01-21 12-26-01](https://github.com/user-attachments/assets/f9fb82bc-5b43-4486-bea4-72107bfa7ad9)
 
-**Open VMware Workstation and create a new Virtual Machine. Go with the recommended installation.**
+**Open VMware Workstation and create a new Virtual Machine. Go with the recommended configuration.**
 
 ![Screenshot From 2025-01-21 12-26-12](https://github.com/user-attachments/assets/ce56b520-ceb0-4a0c-9073-d71b3af6bc9c)
 
@@ -109,15 +109,15 @@ This setup simulates a home network within a virtual environment. A Fedora Serve
 
 ![Screenshot From 2025-01-21 12-26-59](https://github.com/user-attachments/assets/a0765594-6c3d-4ef8-b24f-af8219dbccf7)
 
-**Specify the disk capacity, for this case we are going with the minimum size recommended.**
+**Specify the disk capacity. For this case, I'm going with the minimum size recommended.**
 
 ![Screenshot From 2025-01-21 12-28-03](https://github.com/user-attachments/assets/01b24cfd-68b1-405b-ad6e-e4e5f80ce8a3)
 
-**This is how the initial configuration will look like for the server VM.**
+**This is how the initial configuration will look like for the Router VM.**
 
 ![Screenshot From 2025-01-21 12-32-20](https://github.com/user-attachments/assets/02984db2-567f-445e-ace8-e3ba4a94e409)
 
-**After the initial configuration for the server VM. Go to the Virtual Network Editor in VMware and add a new network (vmnet2).**
+**After the initial configuration for the Router VM. Go to the Virtual Network Editor in VMware and add a new network (vmnet2).**
 
 ![Screenshot From 2025-01-21 12-32-38](https://github.com/user-attachments/assets/cab9b05c-e70a-4d49-b9d8-b9518205f3a1)
 
@@ -130,7 +130,7 @@ This setup simulates a home network within a virtual environment. A Fedora Serve
 
 ![Screenshot From 2025-01-21 12-34-01](https://github.com/user-attachments/assets/f9f6e7ac-717f-4ffe-9c35-b90cffe7eb1e)
 
-**Since we are here, add a third network that is going to be use later as a subnet. Follow the same steps as the previews network we added before.**
+**Since we are in the network editor settings, let's add a third network that is going to be use later as a subnet. Follow the same steps as the previews network we added before.**
 
 ![Screenshot From 2025-01-21 12-35-59](https://github.com/user-attachments/assets/562c84ac-d527-441c-ac0e-44f12700dc9e)
 
@@ -154,7 +154,7 @@ This setup simulates a home network within a virtual environment. A Fedora Serve
 
 ![Screenshot From 2025-01-21 12-41-48](https://github.com/user-attachments/assets/23edecd5-e52f-4379-8d64-b3455c711486)
 
-**Instalaltion progress.**
+**Installation progress.**
 
 ![Screenshot From 2025-01-21 12-46-40](https://github.com/user-attachments/assets/3785918b-3ea3-47d3-ae08-fc0aa3491edc)
 
@@ -162,7 +162,7 @@ This setup simulates a home network within a virtual environment. A Fedora Serve
 
 ![Screenshot From 2025-01-21 12-48-10](https://github.com/user-attachments/assets/5c1198a7-0273-4b8f-bd5f-6d0b66b99ba5)
 
-**We are going go proceed updating the packages in the Router Vm.**
+**We are going to proceed updating system and packages first in the Router VM.**
 
 4. Install necessary packages:
    ```bash
