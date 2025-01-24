@@ -91,6 +91,79 @@ This setup simulates a home network within a virtual environment. A Fedora Serve
    - Adapter 3: Custom VMnet3
 3. Boot and install Fedora Server.
 
+![Screenshot From 2025-01-21 12-26-01](https://github.com/user-attachments/assets/f9fb82bc-5b43-4486-bea4-72107bfa7ad9)
+
+**Open VMware Workstation and create a new Virtual Machine. Go with the recommended installation.**
+
+![Screenshot From 2025-01-21 12-26-12](https://github.com/user-attachments/assets/ce56b520-ceb0-4a0c-9073-d71b3af6bc9c)
+
+**Choose the option to install the operating system later.**
+
+![Screenshot From 2025-01-21 12-26-22](https://github.com/user-attachments/assets/5e76f5f6-d2fb-4e6b-91b2-d1f7942f2e70)
+
+**For this configuration we are going to choose Linux, and find the Fedora 64-bit version.**
+
+![Screenshot From 2025-01-21 12-26-40](https://github.com/user-attachments/assets/32600297-005e-4cc4-959a-f6becdae53ef)
+
+**Choose a name for your VM, and location to save it.**
+
+![Screenshot From 2025-01-21 12-26-59](https://github.com/user-attachments/assets/a0765594-6c3d-4ef8-b24f-af8219dbccf7)
+
+**Specify the disk capacity, for this case we are going with the minimum size recommended.**
+
+![Screenshot From 2025-01-21 12-28-03](https://github.com/user-attachments/assets/01b24cfd-68b1-405b-ad6e-e4e5f80ce8a3)
+
+**This is how the initial configuration will look like for the server VM.**
+
+![Screenshot From 2025-01-21 12-32-20](https://github.com/user-attachments/assets/02984db2-567f-445e-ace8-e3ba4a94e409)
+
+**After the initial configuration for the server VM. Go to the Virtual Network Editor in VMware and add a new network (vmnet2).**
+
+![Screenshot From 2025-01-21 12-32-38](https://github.com/user-attachments/assets/cab9b05c-e70a-4d49-b9d8-b9518205f3a1)
+
+**Set this new network adapter as a Host-only.**
+
+![Screenshot From 2025-01-21 12-33-12](https://github.com/user-attachments/assets/79e4313b-eeb2-4834-af84-34459915024b)
+
+**Make sure to disable (Use local DHCP service to distribute IP addresses to VMs), since the Router VM is going to be handling the DHCP.**
+**Also make sure to disable (Connect a host virtual adapter vmnet2 to this network), to avoid interferance with the host machine.**
+
+![Screenshot From 2025-01-21 12-34-01](https://github.com/user-attachments/assets/f9f6e7ac-717f-4ffe-9c35-b90cffe7eb1e)
+
+**Since we are here, add a third network that is going to be use later as a subnet. Follow the same steps as the previews network we added before.**
+
+![Screenshot From 2025-01-21 12-35-59](https://github.com/user-attachments/assets/562c84ac-d527-441c-ac0e-44f12700dc9e)
+
+**Add a new Network Adapter for the Router Vm.**
+
+![Screenshot From 2025-01-21 12-36-40](https://github.com/user-attachments/assets/f4a284fd-2553-49b0-9145-56a85640ba3a)
+
+**Choose the Custon option, and select the first virtual network we created. In this case (vmnet2).**
+
+![Screenshot From 2025-01-21 12-38-50](https://github.com/user-attachments/assets/546fb843-f93c-425c-b268-b5a8a83c8544)
+
+**Power on the Router VM to start with the installation and configuration for Fedora Server.**
+
+![Screenshot From 2025-01-21 12-39-07](https://github.com/user-attachments/assets/5816b995-7d9f-4216-b094-7fd52d6c4fb0)
+
+**Choose your desired Language.**
+
+![Screenshot From 2025-01-21 12-41-44](https://github.com/user-attachments/assets/b8810549-79e1-44db-a8ee-822af8897b9c)
+
+**Set up your Root Account and User Account.**
+
+![Screenshot From 2025-01-21 12-41-48](https://github.com/user-attachments/assets/23edecd5-e52f-4379-8d64-b3455c711486)
+
+**Instalaltion progress.**
+
+![Screenshot From 2025-01-21 12-46-40](https://github.com/user-attachments/assets/3785918b-3ea3-47d3-ae08-fc0aa3491edc)
+
+**Important to note that Fedora Server doesn't have a GUI, but you could choose to install one if you want to do so.**
+
+![Screenshot From 2025-01-21 12-48-10](https://github.com/user-attachments/assets/5c1198a7-0273-4b8f-bd5f-6d0b66b99ba5)
+
+**We are going go proceed updating the packages in the Router Vm.**
+
 4. Install necessary packages:
    ```bash
    sudo dnf install -y dhcp-server iptables-services
@@ -182,7 +255,8 @@ This setup simulates a home network within a virtual environment. A Fedora Serve
    ```
    ![Screenshot From 2025-01-21 17-15-03](https://github.com/user-attachments/assets/45554bad-7121-4d80-8e84-4dbd623d637f)
    ![Screenshot From 2025-01-21 17-15-27](https://github.com/user-attachments/assets/af564ca6-3cab-4548-9218-239aa4b20fab)
-   <p align="center">Update packages and install wireshark from terminal.</p>
+
+   **Update packages and install wireshark from terminal.**
 
 3. Launch Wireshark from the terminal or from the GUI
    ```bash
